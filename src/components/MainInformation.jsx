@@ -1,16 +1,16 @@
 import React from 'react';
 import {Col, Row} from "react-bootstrap";
 
-const MainInformation = () => {
+const MainInformation = ({weatherObj, temperature}) => {
    return (
       <div>
          <div className="container">
             <Row>
                <Col>
-                  <h2 className="city">London</h2>
-                  <h3 className="date">Sunday <span className="time">07:09</span></h3>
+                  <h2 className="city">{weatherObj}</h2>
+                  <h3 className="date">Sunday and time</h3>
                   <p className="temperature">
-                     12°C
+                     {temperature}
                   </p>
                </Col>
             </Row>
