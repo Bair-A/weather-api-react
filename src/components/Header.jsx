@@ -8,6 +8,9 @@ const Header = ({singleSelections, setSingleSelections}) => {
          <div className='container'>
             <Form.Group className="p-3">
                <Row className="align-items-center justify-content-between">
+                  <Col xs="1">
+                     <img className="logo-icon" src="https://openweathermap.org/themes/openweathermap/assets/img/logo_white_cropped.png" alt="API logo" />
+                  </Col>
                   <Col className='search-field d-flex' xs="7">
                      <Typeahead
                         className="w-100"

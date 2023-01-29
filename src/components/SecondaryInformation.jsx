@@ -1,7 +1,7 @@
 import React from 'react';
 import {Col, Row} from "react-bootstrap";
 
-const SecondaryInformation = () => {
+const SecondaryInformation = ({humidity, windSpeed, visibility, pressure}) => {
    return (
       <div className="bg-main-color text-white py-5">
          <div className="container">
@@ -12,19 +12,19 @@ const SecondaryInformation = () => {
                </Col>
                <Col>
                   <h3>Humidity</h3>
-                  <span>60%</span>
+                  <span>{humidity}</span>
                </Col>
                <Col>
                   <h3>Wind Speed</h3>
-                  <span>10 k/h</span>
+                  <span>{windSpeed}</span>
                </Col>
                <Col>
-                  <h3>Visiblity</h3>
-                  <span>100km</span>
+                  <h3>Visibility</h3>
+                  <span>{visibility}</span>
                </Col>
                <Col>
                   <h3>Pressure</h3>
-                  <span>1015 hPa</span>
+                  <span>{pressure}</span>
                </Col>
             </Row>
          </div>

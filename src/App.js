@@ -9,8 +9,8 @@ import SecondaryInformation from "./components/SecondaryInformation";
 
 
 function App() {
-   // weatherObj.data.list.main.temp
    const defaultWeather = {
+      check: true,
       data: {
          city: {
             name: 'City is not selected',
@@ -18,8 +18,20 @@ function App() {
          list: [
             {
                main: {
-                  temp: 100,
-               }
+                  temp: 'Is not defined',
+                  humidity: 'Is not defined',
+                  pressure: 'Is not defined',
+               },
+               wind: {
+                  speed: 'Is not defined',
+               },
+               visibility: 'Is not defined',
+               dt_txt: 'Date is not defined',
+               weather: [
+                  {
+                     icon: false,
+                  }
+               ]
             }
          ]
       }
@@ -35,13 +47,32 @@ function App() {
          console.log(response)
          }
       );
-   }, [singleSelections])
+   }, [singleSelections]);
+   const getWindSpeed = (wind) => isNaN(wind) ? wind : wind + ' km/h';
+   const getHumidity = (humidity) => isNaN(humidity) ? humidity : humidity + '%';
+   const getTemp = (temp) => isNaN(temp) ? temp : Math.round(temp - 273) + ' ℃';
+   const getVisibility = (visibility) => isNaN(visibility) ? visibility : visibility/1000 + 'km';
+   const getPressure = (pressure) => isNaN(pressure) ? pressure : pressure + ' hPa';
+   const getYear = (date) => isNaN(date.slice(0, 4)) ? date : date.slice(0, 4);
+   const monthNames = ["", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+   const getDayAndMonth = (date) => isNaN(date.slice(0, 4)) ? '' : `${date.slice(8, 10)}  ${monthNames[+date.slice(5, 7)]}`;
+   const getIcon = (icon) => icon ? `https://openweathermap.org./img/wn/${icon}@2x.png` : '';
 
    return (
       <div className="App">
          <Header setSingleSelections={setSingleSelections} singleSelections={singleSelections}/>
-         <MainInformation weatherObj={weatherObj.data.city.name} temperature={weatherObj.data.list[0].main.temp}/>
-         <SecondaryInformation/>
+         <MainInformation city={weatherObj.data.city.name}
+                          temperature={getTemp(weatherObj.data.list[0].main.temp)}
+                          year={getYear(weatherObj.data.list[0].dt_txt)}
+                          dayAndMonth={getDayAndMonth(weatherObj.data.list[0].dt_txt)}
+                          icon={getIcon(weatherObj.data.list[0].weather[0].icon)}
+         />
+         <SecondaryInformation humidity={getHumidity(weatherObj.data.list[0].main.humidity)}
+                               windSpeed={getWindSpeed(weatherObj.data.list[0].wind.speed)}
+                               visibility={getVisibility(weatherObj.data.list[0].visibility)}
+                               pressure={getPressure(weatherObj.data.list[0].main.pressure)}
+
+         />
       </div>
    );
 }

@@ -28,9 +28,13 @@ code {
   color: #343A40 !important;
 }
 
-.main-search-btn {
-  border-radius: 0 0.375rem 0.375rem 0 !important;
-  background: #EB6F4C !important;
+.main-section-bg-color {
+  background: #EB6F4C;
+}
+
+.logo-icon {
+  width: 100px;
+  height: auto;
 }
 
 .selected {
