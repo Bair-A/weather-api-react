@@ -7,35 +7,39 @@ import Header from "./components/Header";
 import MainInformation from "./components/MainInformation";
 import SecondaryInformation from "./components/SecondaryInformation";
 
+const defaultWeather = {
+   check: true,
+   data: {
+      city: {
+         name: 'City is not selected',
+      },
+      list: [
+         {
+            main: {
+               temp: 'Is not defined',
+               humidity: 'Is not defined',
+               pressure: 'Is not defined',
+               temp_max: '',
+               temp_min: '',
+            },
+            wind: {
+               speed: 'Is not defined',
+            },
+            visibility: 'Is not defined',
+            dt_txt: 'Date is not defined',
+            weather: [
+               {
+                  icon: false,
+                  description: false,
+               }
+            ]
+         }
+      ]
+   }
+}
 
 function App() {
-   const defaultWeather = {
-      check: true,
-      data: {
-         city: {
-            name: 'City is not selected',
-         },
-         list: [
-            {
-               main: {
-                  temp: 'Is not defined',
-                  humidity: 'Is not defined',
-                  pressure: 'Is not defined',
-               },
-               wind: {
-                  speed: 'Is not defined',
-               },
-               visibility: 'Is not defined',
-               dt_txt: 'Date is not defined',
-               weather: [
-                  {
-                     icon: false,
-                  }
-               ]
-            }
-         ]
-      }
-   }
+
    const [singleSelections, setSingleSelections] = useState([]);
    const [weatherObj, setWeatherObj] = useState(defaultWeather);
    useEffect(() => {
@@ -57,21 +61,31 @@ function App() {
    const monthNames = ["", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
    const getDayAndMonth = (date) => isNaN(date.slice(0, 4)) ? '' : `${date.slice(8, 10)}  ${monthNames[+date.slice(5, 7)]}`;
    const getIcon = (icon) => icon ? `https://openweathermap.org./img/wn/${icon}@2x.png` : '';
+   const getDescription = (description) => description ? description : '';
+   const getFlag = (flag) => {
+      if (!flag) return
+      let lowercaseFlag = flag.toLowerCase();
+     return `https://openweathermap.org/images/flags/${lowercaseFlag}.png`
+   }
 
    return (
       <div className="App">
          <Header setSingleSelections={setSingleSelections} singleSelections={singleSelections}/>
          <MainInformation city={weatherObj.data.city.name}
+                          country={weatherObj.data.city.country}
                           temperature={getTemp(weatherObj.data.list[0].main.temp)}
+                          maxTemp={getTemp(weatherObj.data.list[0].main.temp_max)}
+                          minTemp={getTemp(weatherObj.data.list[0].main.temp_min)}
                           year={getYear(weatherObj.data.list[0].dt_txt)}
                           dayAndMonth={getDayAndMonth(weatherObj.data.list[0].dt_txt)}
                           icon={getIcon(weatherObj.data.list[0].weather[0].icon)}
+                          flag={getFlag(weatherObj.data.city.country)}
          />
-         <SecondaryInformation humidity={getHumidity(weatherObj.data.list[0].main.humidity)}
+         <SecondaryInformation descripton={getDescription(weatherObj.data.list[0].weather[0].description)}
+                               humidity={getHumidity(weatherObj.data.list[0].main.humidity)}
                                windSpeed={getWindSpeed(weatherObj.data.list[0].wind.speed)}
                                visibility={getVisibility(weatherObj.data.list[0].visibility)}
                                pressure={getPressure(weatherObj.data.list[0].main.pressure)}
-
          />
       </div>
    );

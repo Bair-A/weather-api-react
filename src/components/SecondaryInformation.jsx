@@ -1,14 +1,14 @@
 import React from 'react';
 import {Col, Row} from "react-bootstrap";
 
-const SecondaryInformation = ({humidity, windSpeed, visibility, pressure}) => {
+const SecondaryInformation = ({humidity, windSpeed, visibility, pressure, descripton}) => {
    return (
       <div className="bg-main-color text-white py-5">
          <div className="container">
             <Row>
                <Col>
-                  <h3>Chance of Rain</h3>
-                  <span>12%</span>
+                  <h3>Description</h3>
+                  <span>{descripton}</span>
                </Col>
                <Col>
                   <h3>Humidity</h3>

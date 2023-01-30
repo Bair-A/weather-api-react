@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Button, Col, Form, Row} from "react-bootstrap";
 import { Typeahead } from 'react-bootstrap-typeahead';
-const options = ['Moscow', 'London', 'Ankara'];
+const options = ['Moscow', 'London', 'Ankara', 'Antalya'];
 const Header = ({singleSelections, setSingleSelections}) => {
    return (
       <div className="header bg-main-color">
