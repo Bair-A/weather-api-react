@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from "./components/Header";
 import MainInformation from "./components/MainInformation";
 import SecondaryInformation from "./components/SecondaryInformation";
+import WeatherItem from "./components/WeatherItem";
 
 const defaultWeather = {
    check: true,
@@ -67,6 +68,16 @@ function App() {
       let lowercaseFlag = flag.toLowerCase();
      return `https://openweathermap.org/images/flags/${lowercaseFlag}.png`
    }
+   const getWeatherItem= (item) => {
+      if (item.dt_txt.slice(11) != "12:00:00") return
+
+      return <WeatherItem date={getDayAndMonth(item.dt_txt)}
+                          icon={getIcon(item.weather[0].icon)}
+                          minMax={`${getTemp(item.main.temp_max)} / ${getTemp(item.main.temp_min)}`}
+                          description={getDescription(item.weather[0].description)}
+      />
+
+   }
 
    return (
       <div className="App">
@@ -87,6 +98,9 @@ function App() {
                                visibility={getVisibility(weatherObj.data.list[0].visibility)}
                                pressure={getPressure(weatherObj.data.list[0].main.pressure)}
          />
+         <div>
+            {weatherObj.data.list.map(item => getWeatherItem(item))}
+         </div>
       </div>
    );
 }
