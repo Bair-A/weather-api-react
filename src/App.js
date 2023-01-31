@@ -107,7 +107,13 @@ function App() {
                                visibility={getVisibility(weatherObj.data.list[0].visibility)}
                                pressure={getPressure(weatherObj.data.list[0].main.pressure)}
          />
-         <div>
+         <div className='container'>
+            <Row className='align-items-center fs-5 mt-4 fw-bold'>
+               <Col>Date</Col>
+               <Col>Weather icon</Col>
+               <Col>max / min temp</Col>
+               <Col>Description</Col>
+            </Row>
             {weatherObj.data.list.map(item => getWeatherItem(item))}
          </div>
       </div>
