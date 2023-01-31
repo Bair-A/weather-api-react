@@ -8,6 +8,7 @@ import MainInformation from "./components/MainInformation";
 import SecondaryInformation from "./components/SecondaryInformation";
 import WeatherItem from "./components/WeatherItem";
 
+const LOCAL_STORAGE_KEY = 'CelsiusButton';
 const defaultWeather = {
    check: true,
    data: {
@@ -40,7 +41,13 @@ const defaultWeather = {
 }
 
 function App() {
-
+   const setLocalStorage = (value) => localStorage.setItem(LOCAL_STORAGE_KEY, value);
+   const [btnCelsius, setBtnCelsius] = useState(localStorage.getItem(LOCAL_STORAGE_KEY) || true);
+   const handlerBtn = () => {
+        setBtnCelsius(!btnCelsius);
+        setLocalStorage(!btnCelsius);
+        console.log(btnCelsius);
+   }
    const [singleSelections, setSingleSelections] = useState([]);
    const [weatherObj, setWeatherObj] = useState(defaultWeather);
    useEffect(() => {
@@ -55,7 +62,11 @@ function App() {
    }, [singleSelections]);
    const getWindSpeed = (wind) => isNaN(wind) ? wind : wind + ' km/h';
    const getHumidity = (humidity) => isNaN(humidity) ? humidity : humidity + '%';
-   const getTemp = (temp) => isNaN(temp) ? temp : Math.round(temp - 273) + ' ℃';
+   const getTemp = (temp) => {
+      if (isNaN(temp)) return temp
+      if (btnCelsius) return Math.round(temp - 273) + ' ℃';
+      return temp + ' °F'
+   }
    const getVisibility = (visibility) => isNaN(visibility) ? visibility : visibility/1000 + 'km';
    const getPressure = (pressure) => isNaN(pressure) ? pressure : pressure + ' hPa';
    const getYear = (date) => isNaN(date.slice(0, 4)) ? date : date.slice(0, 4);
@@ -70,18 +81,16 @@ function App() {
    }
    const getWeatherItem= (item) => {
       if (item.dt_txt.slice(11) != "12:00:00") return
-
       return <WeatherItem date={getDayAndMonth(item.dt_txt)}
                           icon={getIcon(item.weather[0].icon)}
                           minMax={`${getTemp(item.main.temp_max)} / ${getTemp(item.main.temp_min)}`}
                           description={getDescription(item.weather[0].description)}
       />
-
    }
 
    return (
       <div className="App">
-         <Header setSingleSelections={setSingleSelections} singleSelections={singleSelections}/>
+         <Header setSingleSelections={setSingleSelections} singleSelections={singleSelections} handlerBtn={handlerBtn} btnCelsius={btnCelsius}/>
          <MainInformation city={weatherObj.data.city.name}
                           country={weatherObj.data.city.country}
                           temperature={getTemp(weatherObj.data.list[0].main.temp)}

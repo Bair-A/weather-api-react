@@ -37,6 +37,13 @@ code {
   height: auto;
 }
 
-.selected {
+.celsius .btn-celsius {
+  font-weight: 700;
+}
+
+.celsius .btn-fahrenheit {
+  font-weight: 400;
+}
+.btn-fahrenheit {
   font-weight: 700;
 }
