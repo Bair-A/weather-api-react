@@ -2,7 +2,7 @@
   "name": "weather-api-react",
   "version": "0.1.0",
   "private": true,
-  "home padge": "https://Bair-A.github.io/weather-api-react",
+  "homepage": "https://bair-a.github.io/weather-api-react",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
