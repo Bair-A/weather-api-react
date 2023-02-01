@@ -46,7 +46,7 @@ function App() {
         setBtnCelsius(!btnCelsius);
         setLocalStorage(!btnCelsius);
    }
-   const [singleSelections, setSingleSelections] = useState([]);
+   const [singleSelections, setSingleSelections] = useState(['New York']);
    const [weatherObj, setWeatherObj] = useState(defaultWeather);
    useEffect(() => {
       if (!singleSelections.length) return;
