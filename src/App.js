@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
-import Cities from './city.list.json';
 import {Form, Row, Col, Button} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from "./components/Header";
@@ -79,7 +78,7 @@ function App() {
      return `https://openweathermap.org/images/flags/${lowercaseFlag}.png`
    }
    const getWeatherItem= (item) => {
-      if (item.dt_txt.slice(11) != "12:00:00") return
+      if (item.dt_txt.slice(11) !== "12:00:00") return
       return <WeatherItem date={getDayAndMonth(item.dt_txt)}
                           icon={getIcon(item.weather[0].icon)}
                           minMax={`${getTemp(item.main.temp_max)} / ${getTemp(item.main.temp_min)}`}

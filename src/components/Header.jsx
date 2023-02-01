@@ -2,8 +2,8 @@ import React, {useEffect, useState} from 'react';
 import {Button, Col, Form, Row} from "react-bootstrap";
 import {Typeahead} from 'react-bootstrap-typeahead';
 import classNames from "classnames/bind";
+import UsCities from './CitiesArr.json';
 
-const options = ['Moscow', 'London', 'Ankara', 'Antalya'];
 const Header = ({singleSelections, setSingleSelections, handlerBtn, btnCelsius}) => {
    const btnClass = classNames(
       "task-input",
@@ -31,7 +31,7 @@ const Header = ({singleSelections, setSingleSelections, handlerBtn, btnCelsius})
                         id="basic-typeahead-single"
                         labelKey="name"
                         onChange={setSingleSelections}
-                        options={options}
+                        options={UsCities}
                         placeholder="Choose a city..."
                         selected={singleSelections}
                      />
