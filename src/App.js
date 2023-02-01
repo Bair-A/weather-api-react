@@ -54,7 +54,7 @@ function App() {
       console.log(link);
       axios.get(link).then(response =>  {
          setWeatherObj(response)
-         console.log(response)
+         // console.log(response)
          }
       );
    }, [singleSelections]);
@@ -77,12 +77,13 @@ function App() {
       let lowercaseFlag = flag.toLowerCase();
      return `https://openweathermap.org/images/flags/${lowercaseFlag}.png`
    }
-   const getWeatherItem= (item) => {
+   const getWeatherItem= (item, index) => {
       if (item.dt_txt.slice(11) !== "12:00:00") return
       return <WeatherItem date={getDayAndMonth(item.dt_txt)}
                           icon={getIcon(item.weather[0].icon)}
                           minMax={`${getTemp(item.main.temp_max)} / ${getTemp(item.main.temp_min)}`}
                           description={getDescription(item.weather[0].description)}
+                          key={index}
       />
    }
 
@@ -112,7 +113,7 @@ function App() {
                <Col>max / min temp</Col>
                <Col>Description</Col>
             </Row>
-            {weatherObj.data.list.map(item => getWeatherItem(item))}
+            {weatherObj.data.list.map((item, index) => getWeatherItem(item, index))}
          </div>
       </div>
    );
