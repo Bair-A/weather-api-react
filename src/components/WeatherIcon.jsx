@@ -2,7 +2,7 @@ import React from 'react';
 
 const WeatherIcon = ({icon}) => {
    return (
-      <p>
+      <p className='m-0'>
          <img src={icon} alt="weather-icon"/>
       </p>
    );

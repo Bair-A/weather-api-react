@@ -46,7 +46,6 @@ function App() {
    const handlerBtn = () => {
         setBtnCelsius(!btnCelsius);
         setLocalStorage(!btnCelsius);
-        console.log(btnCelsius);
    }
    const [singleSelections, setSingleSelections] = useState([]);
    const [weatherObj, setWeatherObj] = useState(defaultWeather);
@@ -100,15 +99,15 @@ function App() {
                           dayAndMonth={getDayAndMonth(weatherObj.data.list[0].dt_txt)}
                           icon={getIcon(weatherObj.data.list[0].weather[0].icon)}
                           flag={getFlag(weatherObj.data.city.country)}
+                          descripton={getDescription(weatherObj.data.list[0].weather[0].description)}
          />
-         <SecondaryInformation descripton={getDescription(weatherObj.data.list[0].weather[0].description)}
-                               humidity={getHumidity(weatherObj.data.list[0].main.humidity)}
+         <SecondaryInformation humidity={getHumidity(weatherObj.data.list[0].main.humidity)}
                                windSpeed={getWindSpeed(weatherObj.data.list[0].wind.speed)}
                                visibility={getVisibility(weatherObj.data.list[0].visibility)}
                                pressure={getPressure(weatherObj.data.list[0].main.pressure)}
          />
          <div className='container'>
-            <Row className='align-items-center fs-5 mt-4 fw-bold'>
+            <Row className='align-items-center fs-5 mt-4 fw-bold text-center'>
                <Col>Date</Col>
                <Col>Weather icon</Col>
                <Col>max / min temp</Col>

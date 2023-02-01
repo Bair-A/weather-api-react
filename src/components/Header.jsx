@@ -20,12 +20,12 @@ const Header = ({singleSelections, setSingleSelections, handlerBtn, btnCelsius})
          <div className='container'>
             <Form.Group className="p-3">
                <Row className="align-items-center justify-content-between">
-                  <Col xs="1">
-                     <img className="logo-icon"
+                  <Col xs="2" lg="1">
+                     <img className="logo-icon w-100"
                           src="https://openweathermap.org/themes/openweathermap/assets/img/logo_white_cropped.png"
                           alt="API logo"/>
                   </Col>
-                  <Col className='search-field d-flex' xs="7">
+                  <Col className='search-field d-flex' xs="6">
                      <Typeahead
                         className="w-100"
                         id="basic-typeahead-single"
