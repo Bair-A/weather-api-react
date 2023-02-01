@@ -51,12 +51,7 @@ function App() {
    useEffect(() => {
       if (!singleSelections.length) return;
       const link = `https://api.openweathermap.org/data/2.5/forecast?q=${singleSelections}&appid=52a6e9c106af61a22be1254983414168`;
-      console.log(link);
-      axios.get(link).then(response =>  {
-         setWeatherObj(response)
-         // console.log(response)
-         }
-      );
+      axios.get(link).then(response => setWeatherObj(response));
    }, [singleSelections]);
    const getWindSpeed = (wind) => isNaN(wind) ? wind : wind + ' km/h';
    const getHumidity = (humidity) => isNaN(humidity) ? humidity : humidity + '%';
