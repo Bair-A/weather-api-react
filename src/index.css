@@ -5,11 +5,11 @@ body {
   /*  sans-serif;*/
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
@@ -21,15 +21,15 @@ code {
 }
 
 .bg-main-color {
-  background: #343A40;
+  background: #343a40;
 }
 
 .text-main-color {
-  color: #343A40 !important;
+  color: #343a40 !important;
 }
 
 .main-section-bg-color {
-  background: #EB6F4C;
+  background: #eb6f4c;
 }
 
 .logo-icon {
