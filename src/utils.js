@@ -36,7 +36,8 @@ export const getDayAndMonth = (date) =>
     ? ""
     : `${date.slice(8, 10)}  ${monthNames[+date.slice(5, 7)]}`;
 export const getIcon = (icon) =>
-  icon ? `https://openweathermap.org./img/wn/${icon}@2x.png` : "";
+  icon ? `https://openweathermap.org/img/wn/${icon}@2x.png` : "";
+// https://openweathermap.org/img/wn/01d@2x.png
 export const getDescription = (description) => (description ? description : "");
 export const getFlag = (flag) => {
   if (!flag) return;
